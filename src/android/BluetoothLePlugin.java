@@ -764,15 +764,19 @@ public class BluetoothLePlugin extends CordovaPlugin {
       }
     }
 
-    dataBuilder.setIncludeDeviceName(obj.optBoolean("includeDeviceName", true));
+//    dataBuilder.setIncludeDeviceName(obj.optBoolean("includeDeviceName", true));
 
     dataBuilder.setIncludeTxPowerLevel(obj.optBoolean("includeTxPowerLevel", true));
 
     AdvertiseData advertiseData = dataBuilder.build();
 
+    AdvertiseData.Builder respBuilder = new AdvertiseData.Builder();
+    respBuilder.setIncludeDeviceName(true);
+
     advertiseCallbackContext = callbackContext;
 
-    advertiser.startAdvertising(advertiseSettings, advertiseData, advertiseCallback);
+//    advertiser.startAdvertising(advertiseSettings, advertiseData, advertiseCallback);
+    advertiser.startAdvertising(advertiseSettings, advertiseData, respBuilder.build(), advertiseCallback);
   }
 
   private void stopAdvertisingAction(JSONArray args, CallbackContext callbackContext) {
